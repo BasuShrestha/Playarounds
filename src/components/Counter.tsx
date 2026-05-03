@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import confetti from 'canvas-confetti'
 import './Counter.css'
 
 function Counter() {
@@ -38,6 +39,34 @@ function Counter() {
     setItems(items.map(item => ({ ...item, count: 0 })))
   }
 
+  const celebrateWinner = () => {
+    const duration = 3000
+    const end = Date.now() + duration
+
+    const frame = () => {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ['#00d9ff', '#ff006e', '#8338ec', '#ff9a00', '#38ef7d']
+      })
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ['#00d9ff', '#ff006e', '#8338ec', '#ff9a00', '#38ef7d']
+      })
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame)
+      }
+    }
+
+    frame()
+  }
+
   return (
     <div className="counter-container">
       <h1 className="hdr-text">Count Tracker</h1>
@@ -51,6 +80,7 @@ function Counter() {
         />
         <button type="submit" className="btn btn-plus add-btn">Add</button>
         <button type="button" className="btn btn-reset add-btn" onClick={resetAll}>Reset</button>
+        <button type="button" className="btn btn-winner add-btn" onClick={celebrateWinner}>Winner</button>
       </form>
       <div className="items-container">
         {items.map(item => (

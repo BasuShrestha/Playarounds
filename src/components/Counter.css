@@ -277,6 +277,19 @@
               0 0 60px rgba(255, 154, 0, 0.5);
 }
 
+.btn-winner {
+  background: linear-gradient(135deg,
+    #38ef7d 0%,
+    #11998e 50%,
+    #38ef7d 100%);
+  color: white;
+}
+
+.btn-winner:hover {
+  box-shadow: 0 0 30px rgba(56, 239, 125, 0.8),
+              0 0 60px rgba(56, 239, 125, 0.5);
+}
+
 .hdr-text {
   text-align: center;
   font-size: 2.5rem;
